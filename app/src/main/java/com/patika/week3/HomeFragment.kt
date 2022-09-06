@@ -1,88 +1,60 @@
 package com.patika.week3
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.patika.week3.databinding.FragmentHomeBinding
 
+const val COUNTER = "COUNTER"
 
 class HomeFragment : Fragment() {
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.v("PATIKADEV","onAttach called.")
-    }
+    private lateinit var homeFragmentBinding: FragmentHomeBinding
+    private var counter = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.v("PATIKADEV","onCreate called.")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        Log.v("PATIKADEV","onCreateView called.")
-        return inflater.inflate(R.layout.fragment_home,
-            container,
-            false
-        )
+    ): View {
 
+        Log.v("PATIKA", "onCreateView called!")
+
+        homeFragmentBinding = FragmentHomeBinding.inflate(inflater)
+        return homeFragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.v("PATIKADEV","onViewCreated called.")
-    }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        Log.v("PATIKADEV","onViewStateRestored called.")
-    }
+        val counterFromSavedState = savedInstanceState?.getInt(COUNTER)
+        homeFragmentBinding.tvCounter.text = getString(R.string.counter, counterFromSavedState)
 
-    override fun onStart() {
-        super.onStart()
-        Log.v("PATIKADEV","onStart called.")
-    }
+        Log.v("PATIKA", "onViewCreated called!")
 
-    override fun onResume() {
-        super.onResume()
-        Log.v("PATIKADEV","onResume called.")
-    }
+        homeFragmentBinding.apply {
+            btnIncrement.setOnClickListener{
+                counter++
+                tvCounter.text = getString(R.string.counter, counter)
+            }
+            btnDecrement.setOnClickListener{
+                counter--
+                tvCounter.text = getString(R.string.counter, counter)
+            }
 
-    override fun onPause() {
-        super.onPause()
-        Log.v("PATIKADEV","onPause called.")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.v("PATIKADEV","onStop called.")
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.v("PATIKADEV","onSaveInstanceState called.")
+        outState.putInt(COUNTER,counter)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.v("PATIKADEV","onDestroyView called.")
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.v("PATIKADEV","onDestroy called.")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.v("PATIKADEV","onDetach called.")
-    }
-
-
 
 }
