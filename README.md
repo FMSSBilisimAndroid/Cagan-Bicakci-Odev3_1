@@ -5,6 +5,10 @@ Bu haftanın 2. ödevine aşağıda linkten erişebilirsiniz :)
 <br>
 https://github.com/FMSSBilisimAndroid/Cagan-Bicakci-Odev3_2
 
+3. hafta 1. ödevde onSaveInstance, onViewStateRestored kullanımı için bir counter uygulamasının iyi bir örnek olacağını düşündüm. Çünkü counter uygulamasında sayıyı increment veya decrement yapıldıktan sonra emulatörü rotate ettiğimde ui tekrardan oluşturulduğu için counter değerinin ekrandan kaybolduğunu görürüz. Bunun önüne geçmek için ise onSaveInstance yardımıyla  counter değerini kaydettikten sonra uygulama life cycle içerisinde onCreate methodunun tekrar çalıştığı durumdarda bu değeri restore ederek ui üzerinde kaybolmasının önüne geçebiliriz.
+
+https://user-images.githubusercontent.com/44499663/189536412-a4b4a4c7-5eb6-4bb4-94d0-545c5f7b1883.mp4
+
 
 ## Parcelable ve Serializable
 
